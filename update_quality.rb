@@ -13,6 +13,8 @@ def update_quality(awards)
     award.decrease_expiration if award.blue_distinction_plus?
 
     award.handle_expired_award if award.expired?
+
+    award.handle_blue_star if award.blue_star?
   end
 end
 

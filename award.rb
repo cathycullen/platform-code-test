@@ -35,13 +35,16 @@ class Award
     @name == BLUE_COMPARE
   end
 
+  def blue_star?
+    @name == 'Blue Star'
+  end
+
   def blue_first?
     @name == BLUE_FIRST
   end
 
   def decrease_expiration
     @expires_in -= 1
-    puts "decrease_expiration: expires_in: #{expires_in}"
   end
 
   def handle_blue_first_or_blue_compare
@@ -56,18 +59,27 @@ class Award
 
   def decrease_quality
       @quality -= 1 if (@quality > 0)
-      puts "decrement: #{@quality}"
   end
 
   def increase_quality
     @quality += 1 if (@quality < 50)
-    puts "increment: #{@quality}"
   end
 
   def handle_expired_award
     decrease_quality if non_blue_award?
     @quality = 0 if @name == BLUE_COMPARE
     increase_quality if @name == BLUE_FIRST
+  end
+
+  def handle_blue_star
+    2.times do
+      decrease_quality if @quality > 0
+    end
+    if expired?
+      2.times do
+        decrease_quality if @quality > 0
+      end
+    end
   end
 
 end
