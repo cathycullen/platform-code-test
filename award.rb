@@ -1,6 +1,7 @@
 BLUE_FIRST = 'Blue First'
 BLUE_COMPARE = 'Blue Compare'
 BLUE_DESTINATION_PLUS = 'Blue Distinction Plus'
+BLUE_STAR = 'Blue Star'
 
 class Award
   attr_accessor :name, :expires_in, :quality
@@ -36,7 +37,7 @@ class Award
   end
 
   def blue_star?
-    @name == 'Blue Star'
+    @name == BLUE_STAR
   end
 
   def blue_first?
