@@ -2,6 +2,8 @@ BLUE_FIRST = 'Blue First'
 BLUE_COMPARE = 'Blue Compare'
 BLUE_DESTINATION_PLUS = 'Blue Distinction Plus'
 BLUE_STAR = 'Blue Star'
+MAX_QUALITY = 50
+MIN_QUALITY = 0
 
 class Award
   attr_accessor :name, :expires_in, :quality
@@ -25,7 +27,7 @@ class Award
   end
 
   def positive_quality?
-    @quality > 0
+    @quality > MIN_QUALITY
   end
 
   def blue_distinction_plus?
@@ -49,7 +51,7 @@ class Award
   end
 
   def handle_blue_first_or_blue_compare
-    increase_quality if @quality < 50
+    increase_quality if @quality < MAX_QUALITY
     increase_quality if blue_compare? && @expires_in < 11
     increase_quality if blue_compare? && @expires_in < 6
   end
@@ -59,26 +61,26 @@ class Award
   end
 
   def decrease_quality
-      @quality -= 1 if (@quality > 0)
+      @quality -= 1 if (@quality > MIN_QUALITY)
   end
 
   def increase_quality
-    @quality += 1 if (@quality < 50)
+    @quality += 1 if (@quality < MAX_QUALITY)
   end
 
   def handle_expired_award
     decrease_quality if non_blue_award?
-    @quality = 0 if @name == BLUE_COMPARE
+    @quality = MIN_QUALITY if @name == BLUE_COMPARE
     increase_quality if @name == BLUE_FIRST
   end
 
   def handle_blue_star
     2.times do
-      decrease_quality if @quality > 0
+      decrease_quality if @quality > MIN_QUALITY
     end
     if expired?
       2.times do
-        decrease_quality if @quality > 0
+        decrease_quality if @quality > MIN_QUALITY
       end
     end
   end
