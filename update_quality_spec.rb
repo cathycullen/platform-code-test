@@ -1,5 +1,6 @@
 require 'rspec'
 require 'update_quality'
+require 'pry'
 
 describe '#update_quality' do
 
@@ -213,25 +214,25 @@ describe '#update_quality' do
       end
     end
   end
-
-  context 'Given several award' do
-    let(:awards) {
-      [
-        Award.new('NORMAL ITEM', 5, 10),
-        Award.new('Blue First', 3, 10),
-      ]
-    }
-
-    context 'when quality is updated' do
-      before do
-        update_quality(awards)
-      end
-
-      specify { expect(awards[0].quality).to eq(9) }
-      specify { expect(awards[0].expires_in).to eq(4) }
-
-      specify { expect(awards[1].quality).to eq(11) }
-      specify { expect(awards[1].expires_in).to eq(2) }
-    end
-  end
+  #
+  # context 'Given several award' do
+  #   let(:awards) {
+  #     [
+  #       Award.new('NORMAL ITEM', 5, 10),
+  #       Award.new('Blue First', 3, 10),
+  #     ]
+  #   }
+  #
+  #   context 'when quality is updated' do
+  #     before do
+  #       update_quality(awards)
+  #     end
+  #
+  #     specify { expect(awards[0].quality).to eq(9) }
+  #     specify { expect(awards[0].expires_in).to eq(4) }
+  #
+  #     specify { expect(awards[1].quality).to eq(11) }
+  #     specify { expect(awards[1].expires_in).to eq(2) }
+  #   end
+  # end
 end
