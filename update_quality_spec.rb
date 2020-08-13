@@ -1,6 +1,5 @@
 require 'rspec'
 require 'update_quality'
-require 'pry'
 
 describe '#update_quality' do
 
