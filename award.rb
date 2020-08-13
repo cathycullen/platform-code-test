@@ -1,11 +1,8 @@
-require 'pry'
-
 BLUE_FIRST = 'Blue First'
 BLUE_COMPARE = 'Blue Compare'
 BLUE_DESTINATION_PLUS = 'Blue Distinction Plus'
 
 class Award
-
   attr_accessor :name, :expires_in, :quality
 
   def initialize(name, expires_in, quality)
